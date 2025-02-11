@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"io"
 	"net/url"
-	"path"
 	"time"
 )
 
@@ -95,16 +94,16 @@ func (s *Sitemap) realAdd(u *SitemapLoc, locN int, locBytes []byte) error {
 		return s.NextSitemap.realAdd(u, locN, locBytes)
 	}
 
-	if len(u.Images) > 0 {
-		for _, image := range u.Images {
-			output, err := url.Parse(s.Hostname)
-			if err != nil {
-				return err
-			}
-			output.Path = path.Join(output.Path, image.ImageLoc)
-			image.ImageLoc = output.String()
-		}
-	}
+	// if len(u.Images) > 0 {
+	// 	for _, image := range u.Images {
+	// 		output, err := url.Parse(s.Hostname)
+	// 		if err != nil {
+	// 			return err
+	// 		}
+	// 		output.Path = path.Join(output.Path, image.ImageLoc)
+	// 		image.ImageLoc = output.String()
+	// 	}
+	// }
 
 	if locBytes == nil {
 		output, err := url.Parse(s.Hostname)
